@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot name="plate">
+  <link name="plate">
+    <!-- <origin rpy="0 0 0" xyz="-0.03 -0.03 0.01"/> -->
+    <visual>
+      <geometry>
+        
+        <mesh filename="/home/guy/VSprojects/learnable_encoding/assets/PLATE_NEW/meshes/plate.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="/home/guy/VSprojects/learnable_encoding/assets/PLATE_NEW/meshes/plate.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.2"/>
+     <!-- <origin rpy="0 0 0" xyz="-0.1 -0.1 0.001"/> -->
+     <!-- <inertia ixx="0.000951270861568" ixy="0" ixz="0" iyy="0.000951270861568" iyz="0" izz="0.000374272"/> -->
+    </inertial>
+  </link>
+  <!-- <link
+    name="imu_link">
+  </link>
+  <joint
+    name="imu_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="plate" />
+    <child
+      link="imu_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint> -->
+</robot>
