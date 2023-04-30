@@ -103,7 +103,7 @@ train:
       normalize_advantage: true
       gamma: 0.99
       tau: 0.95
-      learning_rate: 0.0003
+      learning_rate: 0.0005
       lr_schedule: adaptive
       schedule_type: standard
       kl_threshold: 0.008
@@ -119,7 +119,7 @@ train:
       horizon_length: 32
       minibatch_size: 16384
       mini_epochs: 5
-      critic_coef: 4
+      critic_coef: 2
       clip_value: true
       seq_len: 4
       bounds_loss_coef: 0.0001
