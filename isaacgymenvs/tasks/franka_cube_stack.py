@@ -927,10 +927,10 @@ class FrankaCubeStack(VecTask):
                                                     torch.rand(num_resets, 2, device=self.device) - 0.5)
 
         if cube.lower() != 'a':
-            # on_table = torch.randint(2, size=(len(env_ids),)) == 1
-            # sampled_cube_state[~on_table, 2] -= 1
-            on_table = torch.randint(3, size=(len(env_ids),)) < 2
+            on_table = torch.randint(2, size=(len(env_ids),)) == 1
             sampled_cube_state[~on_table, 2] -= 1
+            # on_table = torch.randint(3, size=(len(env_ids),)) < 2
+            # sampled_cube_state[~on_table, 2] -= 1
 
 
         this_cube_state_all[env_ids, :] = sampled_cube_state
@@ -1185,7 +1185,7 @@ def compute_franka_reward(
     open_hand = torch.norm(states['q'][:, -4:], dim=-1)
 
     # distance_to_final_target = torch.exp(-10 * torch.norm(states['cubeA_pos'] - states['pick_target'], dim=-1))
-    rewards = 1 * dist_reward + 10 * cubeA_lifted + close_to_goal * close_hand #+ cubeA_lifted #* distance_to_final_target * 5  # + close_to_goal * #+ open_hands#+ 1 * contact_reward + 5 * contact_reward * dist_from_target #- obstacle_fell.long()  #- 5 * bad_coordinate#+ from_side #+ #+ torque_reward + action_diff #+ action_diff #no_rotation
+    rewards = 1 * dist_reward + 10 * cubeA_lifted + close_to_goal * close_hand + 100*cubeA_lifted*cubeA_height #* distance_to_final_target * 5  # + close_to_goal * #+ open_hands#+ 1 * contact_reward + 5 * contact_reward * dist_from_target #- obstacle_fell.long()  #- 5 * bad_coordinate#+ from_side #+ #+ torque_reward + action_diff #+ action_diff #no_rotation
 
     reset_buf = torch.where((progress_buf >= max_episode_length - 1), torch.ones_like(reset_buf), reset_buf)
     cube_fall = states['cubeA_pos'][:, 2] < 1
