@@ -125,8 +125,8 @@ train:
       bounds_loss_coef: 0.0001
 task_name: ${task.name}
 experiment: collision_v1
-num_envs: 4096
-seed: 99
+num_envs: 8
+seed: 42
 torch_deterministic: false
 max_iterations: ''
 physics_engine: physx
@@ -137,8 +137,8 @@ graphics_device_id: 0
 num_threads: 4
 solver_type: 1
 num_subscenes: 4
-test: false
-checkpoint: ''
+test: true
+checkpoint: /home/guy/VSprojects/collision_aware_dexterity/isaacgymenvs/runs/collision_v1/nn/collision_v1.pth
 multi_gpu: false
 wandb_activate: false
 wandb_group: ''
@@ -149,4 +149,4 @@ capture_video: false
 capture_video_freq: 1464
 capture_video_len: 100
 force_render: true
-headless: true
+headless: false
