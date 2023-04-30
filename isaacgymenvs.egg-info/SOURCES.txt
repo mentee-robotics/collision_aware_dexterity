@@ -17,6 +17,7 @@ isaacgymenvs/tasks/ball_balance.py
 isaacgymenvs/tasks/cartpole.py
 isaacgymenvs/tasks/franka_cabinet.py
 isaacgymenvs/tasks/franka_cube_stack.py
+isaacgymenvs/tasks/franka_cube_stack_happy.py
 isaacgymenvs/tasks/franka_cube_stack_plate.py
 isaacgymenvs/tasks/franka_cube_stack_unitree.py
 isaacgymenvs/tasks/humanoid.py

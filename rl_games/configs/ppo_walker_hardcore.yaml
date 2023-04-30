@@ -61,5 +61,5 @@ params:
     player:
       render: False
       games_num: 200
-      deterministic: True 
+      determenistic: True 
 

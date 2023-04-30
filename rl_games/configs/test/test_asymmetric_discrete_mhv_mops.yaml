@@ -48,7 +48,7 @@ params:
       multi_head_value: False
     player:
         games_num: 100
-        deterministic: True
+        determenistic: True
 
     central_value_config:
       minibatch_size: 512

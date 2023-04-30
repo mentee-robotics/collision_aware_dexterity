@@ -23,7 +23,7 @@ params:
       name: lstm
       units: 128
       layers: 1
-      layer_norm: False
+      layer_norm: True
 
   config:
     name: 5m_vs_6m_rnn_cv
@@ -34,14 +34,14 @@ params:
     tau: 0.95
     learning_rate: 5e-4
     score_to_win: 20
-    entropy_coef: 0.005
+    entropy_coef: 0.02
     truncate_grads: True
-    grad_norm: 2
+    grad_norm: 10
     env_name: smac
     e_clip: 0.2
-    clip_value: False
-    num_actors: 24
-    horizon_length: 256
+    clip_value: True
+    num_actors: 8
+    horizon_length: 128
     minibatch_size: 2560 # 5 * 512
     mini_epochs: 4
     critic_coef: 1
@@ -50,9 +50,8 @@ params:
     normalize_input: True
     normalize_value: False
     use_action_masks: True
-    seq_length: 16
+    seq_length: 8
     #max_epochs: 10000
-    
     env_config:
       name: 5m_vs_6m
       central_value: True
@@ -64,7 +63,7 @@ params:
       render: False
       games_num: 200
       n_game_life: 1
-      deterministic: True
+      determenistic: True
 
     central_value_config:
       minibatch_size: 512
@@ -73,7 +72,7 @@ params:
       clip_value: False
       normalize_input: True
       truncate_grads: True
-      grad_norm: 2
+      grad_norm: 10
       network:
         #normalization: layer_norm
         name: actor_critic
@@ -90,6 +89,6 @@ params:
           name: lstm
           units: 128
           layers: 1
-          layer_norm: False
+          layer_norm: True
       
       #reward_negative_scale: 0.1

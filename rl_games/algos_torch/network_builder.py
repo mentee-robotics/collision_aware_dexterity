@@ -59,9 +59,6 @@ class NetworkBuilder:
         def is_separate_critic(self):
             return False
 
-        def get_value_layer(self):
-            return self.value
-
         def is_rnn(self):
             return False
 
@@ -170,17 +167,6 @@ class NetworkBuilder:
                     layers.append(torch.nn.BatchNorm2d(in_channels))  
             return nn.Sequential(*layers)
 
-        def _build_value_layer(self, input_size, output_size, value_type='legacy'):
-            if value_type == 'legacy':
-                return torch.nn.Linear(input_size, output_size)
-            if value_type == 'default':
-                return DefaultValue(input_size, output_size)            
-            if value_type == 'twohot_encoded':
-                return TwoHotEncodedValue(input_size, output_size)
-
-            raise ValueError('value type is not "default", "legacy" or "two_hot_encoded"')
-
-
 
 class A2CBuilder(NetworkBuilder):
     def __init__(self, **kwargs):
@@ -259,7 +245,7 @@ class A2CBuilder(NetworkBuilder):
             if self.separate:
                 self.critic_mlp = self._build_mlp(**mlp_args)
 
-            self.value = self._build_value_layer(out_size, self.value_size)
+            self.value = torch.nn.Linear(out_size, self.value_size)
             self.value_act = self.activations_factory.create(self.value_activation)
 
             if self.is_discrete:
@@ -660,7 +646,7 @@ class A2CResnetBuilder(NetworkBuilder):
 
             self.mlp = self._build_mlp(**mlp_args)
 
-            self.value = self._build_value_layer(out_size, self.value_size)
+            self.value = torch.nn.Linear(out_size, self.value_size)
             self.value_act = self.activations_factory.create(self.value_activation)
             self.flatten_act = self.activations_factory.create(self.activation) 
             if self.is_discrete:
